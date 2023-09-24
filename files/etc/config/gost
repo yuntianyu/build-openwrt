@@ -1,0 +1,5 @@
+
+config gost
+	option enable '0'
+	option run_command '-L=:8080 -F=socks5://183.234.164.37:999'
+

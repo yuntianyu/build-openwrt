@@ -1,0 +1,106 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option packet_steering '1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	option macaddr 'E4:67:1E:29:67:25'
+	option ipv6 '0'
+	list ports 'lan1'
+	list ports 'lan3'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipaddr '192.168.100.1'
+
+config interface 'WG_DMKJ'
+	option proto 'wireguard'
+	option private_key 'mKTQvyWrt3V9W1A0cFJtt/A6MjUq4TJL4b76lD/YeFk='
+	list addresses '172.16.0.20/32'
+
+config wireguard_WG_DMKJ
+	option preshared_key 'sNIpBolF5VSlu2Iudz3IqwRiJlq9/SqDKotSGegSwww='
+	option route_allowed_ips '1'
+	option endpoint_host 'vpn.nydyp.tk'
+	option endpoint_port '10086'
+	option persistent_keepalive '25'
+	option public_key 'x7l9F4DUPJUJLHKLvzrnWV/GjCphgqnP0lN/R7/a5lA='
+	option description '总部'
+	list allowed_ips '192.168.2.0/24'
+	list allowed_ips '172.16.0.254/32'
+	list allowed_ips '172.16.0.3/32'
+
+config interface 'guest'
+	option proto 'static'
+	option ipaddr '192.168.200.1'
+	option netmask '255.255.255.0'
+	option type 'bridge'
+	option device 'LAN2'
+
+config device
+	option type 'bridge'
+	option name 'LAN2'
+	list ports 'lan2'
+
+config interface 'FK'
+	option proto 'static'
+	option ipaddr '192.168.220.1'
+	option netmask '255.255.255.0'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'none'
+
+config interface 'vwan1'
+	option device 'macvlan1'
+	option proto 'static'
+	option ipaddr '172.192.192.100'
+	option netmask '255.255.255.0'
+	option gateway '172.192.192.254'
+	list dns '223.5.5.5'
+	option delegate '0'
+	option metric '41'
+
+config interface 'vwan2'
+	option device 'macvlan2'
+	option proto 'static'
+	option ipaddr '172.192.192.200'
+	option netmask '255.255.255.0'
+	option gateway '172.192.192.254'
+	list dns '223.5.5.5'
+	option metric '42'
+	option delegate '0'
+
+config interface 'WG_HOME'
+	option proto 'wireguard'
+	option private_key 'EM16iUhevWk6E7/YpSVA2c9EbY1TvnEjlTlqczKAU38='
+	list addresses '172.16.0.21/32'
+	option metric '43'
+
+config wireguard_WG_HOME
+	option preshared_key 'khoP6cd7upgqXidPKtUX2L37ZiwOPRbarp3RLtAXeDo='
+	option persistent_keepalive '25'
+	option endpoint_host 'nydyp.tk'
+	option public_key 'bXER+l7h3sGETcyzp1R0ivuQN2HHOumWeB2G0HJhMG4='
+	option endpoint_port '10010'
+	option description '家'
+	list allowed_ips '192.168.123.0/24'
+	list allowed_ips '172.16.0.10/32'
+	list allowed_ips '172.16.0.7/32'
+	list allowed_ips '192.168.10.0/24'
+	option route_allowed_ips '1'
+
+config device
+	option name 'wan'
+	option txqueuelen '1000'
+
