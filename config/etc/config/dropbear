@@ -1,0 +1,11 @@
+
+config dropbear
+	option PasswordAuth 'on'
+	option Port '22'
+	option Banner '/etc/issue'
+	option Debug '1'
+	option Syslog '1'
+	option LogFile '/tmp/dropbear.log'
+
+
+
