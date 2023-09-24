@@ -19,6 +19,10 @@ on:
           - lede-master
           - immortalwrt-master
           - Lienol-master
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
       
 env:
   FEEDS_CONF: config/${{ inputs.source_branch }}/feeds.conf.default
