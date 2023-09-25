@@ -23,7 +23,7 @@ echo "DISTRIB_SOURCECODE='nuoyan'" >>package/base-files/files/etc/openwrt_releas
 # ------------------------------- Other started -------------------------------
 #
 # Add luci-app-amlogic
-svn co https://github.com/kiddin9/openwrt-packages package/
+#svn co https://github.com/kiddin9/openwrt-packages package/
 
 # Apply patch
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
