@@ -1,5 +1,0 @@
-
-config status
-	option base '1'
-	option version '2'
-
