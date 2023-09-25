@@ -1,7 +1,0 @@
-
-config nezha-agent 'config'
-	option enabled '1'
-	option tls '0'
-	option host '192.168.2.31:5555'
-	option secret 'iz3WNZIyYjBvXt9Ywg'
-
