@@ -1,3 +1,0 @@
-20 4 * * * . /etc/hotplug.d/online/51-opkg-upgrade
-# chinadns-ng
-10 3 * * * /usr/bin/chinadns-ng-daily.sh
