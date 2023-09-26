@@ -1,5 +1,0 @@
-
-config ttyd
-	option command '/bin/login'
-	option debug '7'
-
