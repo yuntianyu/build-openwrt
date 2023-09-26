@@ -28,6 +28,7 @@ env:
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  SCKEY: ${{ secrets.SCKEY }}
   TZ: Asia/Shanghai
 
 jobs:
