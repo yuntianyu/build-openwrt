@@ -28,6 +28,7 @@ env:
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  REMOVE_RELEASE: true
   SCKEY: ${{ secrets.SCKEY }}
   TZ: Asia/Shanghai
 
@@ -199,7 +200,7 @@ jobs:
       - name: Remove old Releases
         uses: dev-drprasad/delete-older-releases@master
         continue-on-error: true
-        if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+        if: env.REMOVE_RELEASE == 'true'
         with:
           keep_latest: 3
           delete_tags: true
