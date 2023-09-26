@@ -3,7 +3,7 @@
 # Description: Build OpenWrt
 #============================================================================================
 
-name: SIMAX1800T设备编译固件
+name: 设备编译固件
 
 on:
   repository_dispatch:
