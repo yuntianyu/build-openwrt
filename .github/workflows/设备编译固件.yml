@@ -12,13 +12,13 @@ on:
       source_branch:
         description: "Select the source branch"
         required: false
-        default: "immortalwrt-master"
+        default: "SIMAX1800T"
         type: choice
         options:
-          - openwrt-main
-          - lede-master
-          - immortalwrt-master
-          - Lienol-master
+          - k2
+          - XiaomiR3G
+          - SIMAX1800T
+          - RedmiAX6S
       
 env:
   FEEDS_CONF: config/${{ inputs.source_branch }}/feeds.conf.default
