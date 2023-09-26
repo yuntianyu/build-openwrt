@@ -182,6 +182,12 @@ jobs:
           body_path: release.txt
           files: ${{ env.FIRMWARE }}/*
 
+      - name: WeChat notification
+        continue-on-error: true
+        if: env.SCKEY
+        run: |
+          # [ steps.compile.outputs.status == 'success' ] && curl https://sctapi.ftqq.com/${{ secrets.SCKEY }}.send?text=🎉OpenWrt_${{ env.VERSION }}_${{matrix.target}}编译完成😋|| curl https://sctapi.ftqq.com/${{ secrets.SCKEY }}.send?text=❌OpenWrt_${{ env.VERSION }}_${{matrix.target}}编译失败😂
+
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@main
         with:
