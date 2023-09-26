@@ -14,6 +14,7 @@
 # Set etc/openwrt_release
 sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='$(date +%Y.%m.%d)'|g" package/base-files/files/etc/openwrt_release
 sed -i "s|DISTRIB_DESCRIPTION='.*'|DISTRIB_REVISION='OpenWrt $(date +%Y.%m.%d) by nuoyan'|g" package/base-files/files/etc/openwrt_release
+sed -i "s/OpenWrt /nuoyan build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/default-settings/files/zzz-default-settings
 echo "$(date +%Y.%m.%d)" >package/base-files/files/etc/openwrt_version
 
 # Modify default IP（FROM 192.168.1.1 CHANGE TO 192.168.31.4）
