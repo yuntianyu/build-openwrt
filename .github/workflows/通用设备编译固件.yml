@@ -188,3 +188,13 @@ jobs:
           retain_days: 1
           keep_minimum_runs: 3
           token: ${{ secrets.GH_TOKEN }}
+
+      - name: Remove old Releases
+        uses: dev-drprasad/delete-older-releases@master
+        continue-on-error: true
+        if: env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true' && !cancelled()
+        with:
+          keep_latest: 15
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
