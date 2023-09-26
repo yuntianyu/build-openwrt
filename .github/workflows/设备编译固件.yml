@@ -25,6 +25,7 @@ env:
   CONFIG_FILE: config/${{ inputs.source_branch }}/config
   DIY_P1_SH: config/${{ inputs.source_branch }}/diy-part1.sh
   DIY_P2_SH: config/${{ inputs.source_branch }}/diy-part2.sh
+  FILES: config/${{ inputs.source_branch }}/files
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -61,28 +62,28 @@ jobs:
           sudo timedatectl set-timezone "${TZ}"
           echo "status=success" >> ${GITHUB_OUTPUT}
 
-      - name: Clone source code [ ${{ inputs.source_branch }} ]
+      - name: Configure device sources [ ${{ inputs.source_branch }} ]
         id: codes
         working-directory: /workdir
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         run: |
-          # Set up compilation source code
-          if [[ "${{ inputs.source_branch }}" == *"openwrt"* ]]; then
-              REPO_URL="https://github.com/openwrt/openwrt"
-              REPO_BRANCH="main"
-              TAGS_NAME="official"
-          elif [[ "${{ inputs.source_branch }}" == *"lede"* ]]; then
-              REPO_URL="https://github.com/coolsnowwolf/lede"
-              REPO_BRANCH="master"
-              TAGS_NAME="lede"
-          elif [[ "${{ inputs.source_branch }}" == *"immortalwrt"* ]]; then
+          # Set up compilation device
+          if [[ "${{ inputs.source_branch }}" == *"k2"* ]]; then
               REPO_URL="https://github.com/immortalwrt/immortalwrt"
               REPO_BRANCH="openwrt-23.05"
               TAGS_NAME="immortalwrt"
-          elif [[ "${{ inputs.source_branch }}" == *"Lienol"* ]]; then
-              REPO_URL="https://github.com/Lienol/openwrt"
-              REPO_BRANCH="22.03"
-              TAGS_NAME="Lienol"
+          elif [[ "${{ inputs.source_branch }}" == *"XiaomiR3G"* ]]; then
+              REPO_URL="https://github.com/immortalwrt/immortalwrt"
+              REPO_BRANCH="openwrt-23.05"
+              TAGS_NAME="immortalwrt"
+          elif [[ "${{ inputs.source_branch }}" == *"SIMAX1800T"* ]]; then
+              REPO_URL="https://github.com/immortalwrt/immortalwrt"
+              REPO_BRANCH="openwrt-23.05"
+              TAGS_NAME="immortalwrt"
+          elif [[ "${{ inputs.source_branch }}" == *"RedmiAX6S"* ]]; then
+              REPO_URL="https://github.com/immortalwrt/immortalwrt"
+              REPO_BRANCH="openwrt-23.05"
+              TAGS_NAME="immortalwrt"
           else
               echo "Unknown source code repository."
               exit 1
@@ -113,7 +114,7 @@ jobs:
 
       - name: Load custom configuration
         run: |
-          [[ -d "files" ]] && mv -f files openwrt/files
+          [[ -d "${FILES}" ]] && mv -f files openwrt/files
           [[ -e "${CONFIG_FILE}" ]] && cp -f ${CONFIG_FILE} openwrt/.config
           chmod +x ${DIY_P2_SH}
           cd openwrt/
