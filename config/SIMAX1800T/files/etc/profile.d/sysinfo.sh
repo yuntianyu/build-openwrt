@@ -118,7 +118,7 @@ echo "" # fixed newline
 
 display "系统存储" "$root_usage" "90" "1" "%" " of $root_total"
 printf "CPU 信息:  \x1B[92m%s\x1B[0m\t" "$(cat /proc/cpuinfo | awk -F ': ' '/system type/ {print $2}' | awk -F ' ' '{print $1 " " $2}')"
-printf "\n登陆的IP:  \x1B[92m%s\x1B[0m\n" "$ipd_address"
+printf "登陆的IP:  \x1B[92m%s\x1B[0m\n" "$ipd_address"
 
 echo ""
 echo ""
