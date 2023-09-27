@@ -104,6 +104,15 @@ jobs:
           df -hT ${PWD}
           echo "status=success" >> ${GITHUB_OUTPUT}
 
+      - name: Cache
+        uses: klever1988/cachewrtbuild@test
+        with:
+          ccache: 'true'
+          prefix: ${{ github.workspace }}/openwrt
+          toolchain: true
+          skip: true
+          clean: false
+
       - name: Load custom feeds
         run: |
           [[ -f "${FEEDS_CONF}" ]] && cp -f ${FEEDS_CONF} openwrt/feeds.conf.default
